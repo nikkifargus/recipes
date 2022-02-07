@@ -1,7 +1,7 @@
 const path = require("path");
 const express = require("express");
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 8001;
 
 const app = express();
 
@@ -17,4 +17,10 @@ app.get("*", (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
+});
+
+process.on("SIGINT", function () {
+  console.log("\nGracefully shutting down from SIGINT (Ctrl-C)");
+  // some other closing procedures go here
+  process.exit(0);
 });
